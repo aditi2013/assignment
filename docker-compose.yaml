@@ -1,26 +1,22 @@
-  services:
-    springboot-app:
-      image: springboot-app
-      #restart: always
-      build: .
-      ports:
-        - "9090:8080"
-      environment:
-        MYSQL_HOST: mysqldb
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
-        MYSQL_PORT: 3306
-      depends_on:
-        - mysqldb
-    mysqldb:
-      container_name: mysqldb
-      image: "mysql"
-      volumes:
-        -  ~/data/mysqldb:/var/lib/mysql
-      ports:
-        - "3307:3306"
-      #environment:
-       # MYSQL_DATABASE: assignment
-        #MYSQL_ROOT_PASSWORD: root
-      env_file:
-        - src/main/resources/mysql.env
+services:
+  springboot-app:
+    image: springboot-app
+    build: .
+    ports:
+      - "9090:8080"
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+    depends_on:
+      - mysqldb
+  mysqldb:
+    container_name: mysqldb
+    image: "mysql"
+    volumes:
+      -  ~/data/mysqldb:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    env_file:
+      - src/main/resources/mysql.env
