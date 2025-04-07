@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     public Customer create(CreateCustomerRequest createCustomerRequest) {
         Customer customer = new Customer(null, createCustomerRequest.firstName(), createCustomerRequest.middleName(),
-                createCustomerRequest.lastName(), createCustomerRequest.email(), createCustomerRequest.phone());
+                createCustomerRequest.lastName(), createCustomerRequest.email(), createCustomerRequest.phone(), createCustomerRequest.address());
         return customerRepository.save(customer);
     }
 
@@ -56,6 +56,7 @@ public class CustomerServiceImpl implements CustomerService {
             customer.setEmail(updateCustomerRequest.email());
             customer.setMiddleName(updateCustomerRequest.middleName());
             customer.setPhone(updateCustomerRequest.phone());
+            customer.setAddress(updateCustomerRequest.address());
             return customerRepository.save(customer);
         }).orElse(null);
     }

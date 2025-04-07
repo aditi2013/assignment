@@ -34,7 +34,7 @@ public class CustomerServiceImplTest {
     public void testFindCustomerById_whenSearchedValidCustomer_thenCustomerShouldBeFound() {
         UUID customerId = UUID.randomUUID();
         Customer customer = new Customer(customerId, "John", "P", "Doe",
-                "john.doe@mycompany.com", "9876543210");
+                "john.doe@mycompany.com", "9876543210", null);
 
         when(customerRepository.findById(customerId)).thenReturn(Optional.of(customer));
         Customer found = customerService.findById(customerId).orElse(null);
@@ -49,7 +49,7 @@ public class CustomerServiceImplTest {
     public void testFindCustomerById_whenSearchedInvalidCustomer_thenCustomerShouldNotBeFound() {
         UUID customerId = UUID.randomUUID();
         Customer customer = new Customer(customerId, "John", "P", "Doe",
-                "john.doe@mycompany.com", "9876543210");
+                "john.doe@mycompany.com", "9876543210", null);
 
         when(customerRepository.findById(UUID.randomUUID())).thenReturn(Optional.empty());
         Customer found = customerService.findById(customerId).orElse(null);
@@ -60,10 +60,10 @@ public class CustomerServiceImplTest {
     public void testCreate_whenValidRequestProvided_thenCustomerShouldBeCreated() {
         UUID customerId = UUID.randomUUID();
         CreateCustomerRequest createCustomerRequest = new CreateCustomerRequest("John", "P", "Doe",
-                "john.doe@mycompany.com", "9876543210");
+                "john.doe@mycompany.com", "9876543210", null);
 
         Customer customer = new Customer(customerId, "John", "P", "Doe",
-                "john.doe@mycompany.com", "9876543210");
+                "john.doe@mycompany.com", "9876543210", null);
 
         when(customerRepository.save(any(Customer.class))).thenReturn(customer);
         Customer newCustomer = customerService.create(createCustomerRequest);
@@ -77,7 +77,7 @@ public class CustomerServiceImplTest {
     public void testCreate_whenInvalidRequestProvidedWithDuplicateEmail_thenExceptionShouldBeThrown() {
         UUID customerId = UUID.randomUUID();
         CreateCustomerRequest createCustomerRequest = new CreateCustomerRequest("John", "P", "Doe",
-                "john.doe@mycompany.com", "9876543210");
+                "john.doe@mycompany.com", "9876543210", null);
 
         when(customerRepository.save(any(Customer.class))).thenThrow(
                 new ConstraintViolationException("Duplicate entry 'john.doe@mycompany.com' for key 'customer.customer_email_uk'", Set.of()));

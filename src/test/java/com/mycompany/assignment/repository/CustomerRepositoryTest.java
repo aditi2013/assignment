@@ -23,7 +23,7 @@ public class CustomerRepositoryTest {
     @BeforeEach
     public void setup() {
         testCustomer = new Customer(null, "John", "P", "Doe",
-                "john.doe@mycompany.com", "9876543210");
+                "john.doe@mycompany.com", "9876543210", null);
     }
 
     @AfterEach
@@ -58,7 +58,7 @@ public class CustomerRepositoryTest {
     public void testGetListOfCustomers() {
         Customer savedTestCustomer = customerRepository.save(testCustomer);
         Customer newCustomer = customerRepository.save(new Customer(null, "Peter", "S", "Smith",
-                "peter.smith@mycompany.com", "8769762123"));
+                "peter.smith@mycompany.com", "8769762123", null));
         List<Customer> customers = customerRepository.findAll();
         assertNotNull(customers);
         assertTrue(customers.contains(savedTestCustomer));

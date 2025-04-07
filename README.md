@@ -24,10 +24,14 @@
 ### Execution Steps :
 #### Customer API
 1. Build and run app using docker command
+
    % docker compose up -d --build
 2. Stop app using docker command
-   % docker compose down -v --rmi local
 
+   % docker compose down -v --rmi local
+3. Clean and rebuild application
+
+   % mvn clean compile install -DskipTests
 ### CI/CD  details
 
 ### Consumer App Client
