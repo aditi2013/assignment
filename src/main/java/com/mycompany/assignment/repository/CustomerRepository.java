@@ -4,7 +4,6 @@ import com.mycompany.assignment.entity.Customer;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.NonNullApi;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,10 +17,10 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     @Override
     @EntityGraph(attributePaths = "address")
     @NonNull
-    List<Customer> findAllById(Iterable<UUID> uuids);
+    List<Customer> findAllById(@NonNull Iterable<UUID> uuids);
 
     @Override
     @EntityGraph(attributePaths = "address")
     @NonNull
-    Optional<Customer> findById(UUID id);
+    Optional<Customer> findById(@NonNull UUID id);
 }

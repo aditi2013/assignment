@@ -23,18 +23,11 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    /**
-     * @return
-     */
     @Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
 
-    /**
-     * @param createCustomerRequest
-     * @return
-     */
     @Override
     @Transactional
     public Customer create(CreateCustomerRequest createCustomerRequest) {
@@ -43,10 +36,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.save(customer);
     }
 
-    /**
-     * @param updateCustomerRequest
-     * @return
-     */
     @Override
     @Transactional
     public Customer update(UpdateCustomerRequest updateCustomerRequest) {
